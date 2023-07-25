@@ -87,51 +87,39 @@
 	}
   
   </script>
-  
-  
-  
   <main>
+   
 	<div class="main-container">
-	  {#if !joinedChat}
-	  <h1 style="color:blue;" > Enter the name to join Chat</h1>
+	{#if !joinedChat}
+	<h1 style="color:blue;" > Enter the name to join Chat</h1>
 	<div>
 	 
 	  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
 	  <button on:click={addOnlineUser}>Join Chat</button>
 	</div>
-	  {:else}
+	{:else}
 		<div>
 		  <h2>Welcome, {fullName}!</h2>
-		  <div class="split-container">
-			<!-- Left part displaying "Hello" -->
-			<div class="left-container">
-			  <h1>Hello</h1>
-			</div>
-  
-			<!-- Right part displaying the chat messages -->
-			<div class="right-container">
-			  
-			  <div class="message-container">
-				{#each messages as messageData}
-				  <div
-					class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
-					<span class="chat-sender">{messageData.fullName}:</span>
-					<span class="chat-content">{messageData.message}</span>
-					<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
-				  </div>
-				{/each}
-				<div class="input-container">
-				  <input type="text" bind:value={message} />
-				  <button style="background-color:blue;" on:click={sendMessage}>Send</button>
-				</div>
+		  <div class="message-container">
+			{#each messages as messageData}
+			  <div
+				class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
+				<span class="chat-sender">{messageData.fullName}:</span>
+				<span class="chat-content">{messageData.message}</span>
+				<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
 			  </div>
-			  <button on:click={clearData}>Clear Data</button>
+			{/each}
+			<div class="input-container">
+			  <input type="text" bind:value={message} />
+			  <button style="background-color:blue;" on:click={sendMessage}>Send</button>
 			</div>
 		  </div>
+		  <button on:click={clearData}>Clear Data</button>
 		</div>
 	  {/if}
 	</div>
   </main>
+  
   
   <style>
    
@@ -168,8 +156,6 @@
 	  padding: 10px;
 	  display: flex;
 	  align-items: center;
-	  width: 400px;
-	  margin-left: 300px;
 	}
   
 	.chat-sender {
@@ -189,27 +175,6 @@
 	.chat-message.receiver {
 	  /* Style for receiver messages (blue color) */
 	  color: blue;
-	}
-  
-	
-	.split-container {
-	  display: flex;
-	}
-  
-	.left-container {
-	  flex: 1;
-	  padding: 10px;
-	  border-right: 1px solid #ccc;
-	}
-  
-	.left-container h1 {
-	  color: blue;
-	}
-  
-	.right-container {
-	  flex: 3;
-	  padding: 10px;
-	 
 	}
   
   </style>
