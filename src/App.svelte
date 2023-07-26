@@ -178,7 +178,7 @@
 	  margin-left: -300px;
 	  overflow: auto; 
 	  margin-right: 100px;
-		 background-color: rgb(239, 164, 218);
+	  background-color: rgb(239, 164, 218);
 	
 	}
    
@@ -196,7 +196,7 @@
 	  left: 10px; /* Adjust the value as needed for the desired distance from the left */
 	  display: flex;
 	  align-items: center;
-	  width: 800px;
+	  width: 850px;
 	  margin-left:500px;
 	  }
   
