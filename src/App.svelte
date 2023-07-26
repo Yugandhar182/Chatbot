@@ -77,7 +77,7 @@
 	  });
 	});
   
-	// Call removeOnlineUser when the component is destroyed (user leaves the chat)
+   
    
   
 	// Function to clear all messages from the chat
@@ -192,8 +192,8 @@
    
    .input-container {
 	  position: absolute;
-	  bottom: 15px; /* Adjust the value as needed for the desired distance from the bottom */
-	  left: 10px; /* Adjust the value as needed for the desired distance from the left */
+	  bottom: 15px; 
+	  left: 10px;
 	  display: flex;
 	  align-items: center;
 	  width: 890px;
@@ -241,6 +241,7 @@
 	.chat-sender {
 	  font-weight: bold;
 	  margin-right: 10px;
+	  font-size: 14px;
 	
 	}
   
@@ -256,6 +257,10 @@
 	.chat-message.receiver {
 	 
 	  color: blue;
+	}
+	.chat-content{
+	  font-size:17px;
+	
 	}
 	.card-body {
 	  padding: 10px;
@@ -278,15 +283,15 @@
 	  margin-right: 60px; 
 	}
 	button {
-	  /* Add styles for the remove button */
-	  background-color: red; /* Customize the button background color */
-	  color: white; /* Customize the button text color */
+	 
+	  background-color: red; 
+	  color: white; 
 	  border: none;
 	  padding: 5px 10px;
 	  border-radius: 5px;
 	  cursor: pointer;
 	  margin-left: 10px;
-	  margin-bottom: 25px; /* Adjust the margin-left value as needed */
+	  margin-bottom: 25px; 
 	}
   
   
