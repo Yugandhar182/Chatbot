@@ -204,12 +204,12 @@
 	  margin-right: 5px;
 	  width: 700px;
 	  height: 30px;
-	  margin-bottom:50px;
+	  margin-bottom:1px;
   
 	}
 	.button-container{
 	
-	  margin-bottom:50px;
+	  margin-bottom:1px;
   
 	}
 	.message-container {
