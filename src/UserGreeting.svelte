@@ -3,7 +3,7 @@
 </script>
 
 
-  <h2>Welcome ,Mr {userDisplayName}!</h2>
+  <h2>Welcome ,{userDisplayName}!</h2>
 
 
 <style>
