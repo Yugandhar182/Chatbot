@@ -197,7 +197,7 @@
 	  display: flex;
 	  align-items: center;
 	  width: 800px;
-	  margin-left:600px;
+	  margin-left:500px;
 	  }
   
 	.input-container input {
