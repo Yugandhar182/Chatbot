@@ -164,7 +164,7 @@
   <style>
   
   .main-container{
-	  margin-left: 320px;
+	  margin-left: 500px;
 	  margin-top: -40px;
    
 	
