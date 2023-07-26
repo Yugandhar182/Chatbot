@@ -286,6 +286,7 @@
 	  border-radius: 5px;
 	  cursor: pointer;
 	  margin-left: 10px; /* Adjust the margin-left value as needed */
+	  margin-bottom: 25px;
 	}
   
   
