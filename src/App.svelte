@@ -165,7 +165,7 @@
   
   .main-container{
 	  margin-left: 470px;
-	  margin-top: -80px;
+	  margin-top: -70px;
    
 	
 	}
@@ -202,9 +202,9 @@
   
 	.input-container input {
 	  margin-right: 5px;
-	  width: 700px;
+	  width: 750px;
 	  height: 30px;
-	  margin-bottom:1px;
+	  margin-bottom:25px;
   
 	}
 	.button-container{
