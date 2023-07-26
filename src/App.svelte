@@ -109,7 +109,7 @@
 	  <main>
 		<div class="main-container">
 		  {#if !joinedChat}
-			<!-- Code for user joining the chat -->
+		  
 			<h1 style="color: blue;">Enter your name to join the Chat</h1>
 			<div>
 			  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
@@ -260,7 +260,7 @@
 	  margin-right: 60px; 
 	}
 	button {
-	 
+	  /* Add styles for the remove button */
 	  background-color: red; /* Customize the button background color */
 	  color: white; /* Customize the button text color */
 	  border: none;
