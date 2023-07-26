@@ -184,7 +184,7 @@
 	  display: flex;
 	  align-items: center;
 	  width: 700px;
-	  margin-left:500px;
+	  margin-left:300px;
 	  }
   
 	.input-container input {
