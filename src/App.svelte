@@ -8,8 +8,7 @@
 	// Firebase configuration (replace with your own values)
 	const firebaseConfig = {
 	  apiKey: 'AIzaSyAYnBrsz0_EgcCs5QuAUptdOBC4s1GHffg',
-   
-	  databaseURL: 'https://chatbot-6dc5f-default-rtdb.firebaseio.com/',
+	 databaseURL: 'https://chatbot-6dc5f-default-rtdb.firebaseio.com/',
 	  projectId: 'chatbot-6dc5f',
 	
 	};
@@ -128,7 +127,9 @@
 			  </div>
 			  <div class="input-container">
 				<input type="text" bind:value={message} />
+				<div class="button-container">
 				<button style="background-color: blue;" on:click={sendMessage}>Send</button>
+			  </div>
 			  </div>
 			</div>
 			<div class="online-users-container">
@@ -184,13 +185,18 @@
 	  display: flex;
 	  align-items: center;
 	  width: 700px;
-	  margin-left:350px;
+	  margin-left:300px;
 	  }
   
 	.input-container input {
 	  margin-right: 5px;
 	  width: 700px;
 	  height: 30px;
+	  margin-bottom:50px;
+  
+	}
+	.button-container{
+	
 	  margin-bottom:50px;
   
 	}
