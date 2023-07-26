@@ -23,7 +23,7 @@
 	let messages = [];
 	let onlineUsers = [];
 	let joinedChat = false;
-	let showModal = false;
+   
   
 	// Firebase Realtime Database references
 	const db = getDatabase(firebaseApp);
@@ -82,66 +82,90 @@
 	  remove(messagesRef);
 	}
   
+	function showUserMessages(selectedUserName) {
+	  fullName = selectedUserName;
+	  // Filter the messages based on the selected user's name
+	  messages = messages.filter(
+		(messageData) => messageData.fullName === fullName
+	  );
+	}
+	
+	let messageContainer; 
+  
+	function scrollToBottom() {
+	  if (messageContainer) {
+		messageContainer.scrollTop = messageContainer.scrollHeight;
+	  }
+	}
+  
+	onMount(scrollToBottom);
+  
+  
   
   
   </script>
   
-  
-  <main>
-	<div class="main-container">
-	  {#if !joinedChat}
-		<h1 style="color: blue;">Enter your name to join the Chat</h1>
-		<div>
-		  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
-		  <button on:click={addOnlineUser}>Join Chat</button>
-		</div>
-	  {:else}
-		<div>
-		  <div class="message-container">
-			{#each messages as messageData}
-			  <div class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
-				<span class="chat-sender">{messageData.fullName}:</span>
-				<span class="chat-content">{messageData.message}</span>
-				<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
-			  </div>
-			{/each}
-			<div class="input-container">
-			  <input type="text" bind:value={message} />
-			  <button style="background-color: blue;" on:click={sendMessage}>Send</button>
+	  <!--<button on:click={clearData}>Clear Data</button> -->
+	  <main>
+		<div class="main-container">
+		  {#if !joinedChat}
+			<!-- Code for user joining the chat -->
+			<h1 style="color: blue;">Enter your name to join the Chat</h1>
+			<div>
+			  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
+			  <button on:click={addOnlineUser}>Join Chat</button>
 			</div>
-		  </div>
-		  <button on:click={clearData}>Clear Data</button>
-		</div>
-		
-		<div class="online-users-container">
-		  <div class="Headingcard-body">
-		  <h2>Online Users</h2>
-		  </div>
-		  <div class="online-users-list">
-			{#each onlineUsers as user}
-			<div class="card-body">
-			  <p  class="username" >{user.fullName}</p>
-			 
+		  {:else}
+			<div class="chat-container" on:scroll={scrollToBottom}>
+			  <div class="message-container" bind:this={messageContainer}>
+				{#each messages as messageData}
+				  <div class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
+					<span class="chat-sender">{messageData.fullName}:</span>
+					<span class="chat-content">{messageData.message}</span>
+					<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
+				  </div>
+				{/each}
 			  </div>
-			{/each}
-		  </div>
+			  <div class="input-container">
+				<input type="text" bind:value={message} />
+				<button style="background-color: blue;" on:click={sendMessage}>Send</button>
+			  </div>
+			</div>
+			<div class="online-users-container">
+			  <div class="Headingcard-body">
+				<h2>Online Users</h2>
+			  </div>
+			  <div class="online-users-list">
+				{#each onlineUsers as user}
+				  <div class="card-body" on:click={() => showUserMessages(user.fullName)}>
+					<p class="username">{user.fullName}</p>
+				  </div>
+				{/each}
+			  </div>
+			</div>
+		   
+		  {/if}
 		</div>
-		{/if}
-	 
-	</div>
-  </main>
-  
+	  </main>
+	  
   
   <style>
+  
+  .main-container{
+	  margin-left: 320px;
+	  margin-top: -70px;
+	 
 	
+	}
 	.online-users-container {
 	  border: 1px solid #ccc;
 	  padding: 20px;
 	  width: 300px;
-	  height: 540px;
-	  margin-top:-650px ;
-	  margin-left: 10px;
+	  height: 580px;
+	  margin-top:-600px ;
+	  margin-left: -300px;
 	  overflow: auto; 
+	  margin-right: 100px;
 	
 	}
    
@@ -150,44 +174,38 @@
 	  margin-top: 10px;
 	  overflow-y: auto; 
 	}
-	button {
-	  cursor: pointer;
-	}
+  
    
    
    .input-container {
 	  position: absolute;
-	  bottom: 10px; /* Adjust the value as needed for the desired distance from the bottom */
+	  bottom: 15px; /* Adjust the value as needed for the desired distance from the bottom */
 	  left: 10px; /* Adjust the value as needed for the desired distance from the left */
 	  display: flex;
 	  align-items: center;
-	  
-	  
-	}
+	  width: 700px;
+	  margin-left:500px;
+	  }
   
 	.input-container input {
 	  margin-right: 5px;
-	  width: 1100px;
+	  width: 700px;
+	  height: 30px;
+	  margin-bottom:10px;
   
 	}
 	.message-container {
 		background-image: url('');
-	   
-		border-radius: 5px;
-	   margin-top: -1000px;
-		margin-left: -40px;
-		width: 1200px;
-		height: 600px;
-		/* Add the following styles to position the input container at the bottom */
-		position: relative;
-	  border: 1px solid #ccc;
-	 
+	   border-radius: 5px;
+	   margin-top: -700px;
+		margin-right:100px;
+		height: 590px;
+		border: 1px solid #ccc;
+	  width:850px;
 	  margin: 10px;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
 	  justify-content: center;
 	  padding: 20px;
+	  overflow: auto;
 	  }
   .chat-message {
 	  margin: 5px;
@@ -196,15 +214,16 @@
 	  padding: 10px;
 	  display: flex;
 	  align-items: center;
-	  width: 800px;
-	  margin-left:300px;
+	  width: 700px;
+	  margin-left:80px;
+	  height:30px;
 	 
 	}
   
 	.chat-sender {
 	  font-weight: bold;
 	  margin-right: 10px;
-	 
+	
 	}
   
 	.chat-timestamp {
