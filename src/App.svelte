@@ -3,7 +3,7 @@
 	import { initializeApp } from 'firebase/app';
 	import { getDatabase, ref, push, onValue, remove } from 'firebase/database';
 	import 'bootstrap/dist/css/bootstrap.min.css';
-   
+	import UserGreeting from './UserGreeting.svelte'; 
   
 	// Firebase configuration (replace with your own values)
 	const firebaseConfig = {
@@ -22,6 +22,7 @@
 	let messages = [];
 	let onlineUsers = [];
 	let joinedChat = false;
+	
    
   
 	// Firebase Realtime Database references
@@ -43,9 +44,15 @@
 	}
   
 	function formatDate(timestamp) {
-	  const date = new Date(timestamp);
-	  return `${date.getHours()}:${date.getMinutes()}`;
-	}
+	const date = new Date(timestamp);
+	let hours = date.getHours();
+	const minutes = date.getMinutes();
+	const ampm = hours >= 12 ? 'pm' : 'am';
+	hours %= 12;
+	hours = hours || 12;
+	const formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+	return formattedTime;
+  }
   
 	// Function to add a new online user
 	function addOnlineUser() {
@@ -55,7 +62,6 @@
 		});
 	  }
 	}
-  
   
   
   
@@ -103,8 +109,9 @@
   
   
   </script>
-  
+	
 	  <!--<button on:click={clearData}>Clear Data</button> -->
+	 
 	  <main>
 		<div class="main-container">
 		  {#if !joinedChat}
@@ -115,6 +122,9 @@
 			  <button on:click={addOnlineUser}>Join Chat</button>
 			</div>
 		  {:else}
+  
+		  <UserGreeting userDisplayName={fullName} />
+  
 			<div class="chat-container" on:scroll={scrollToBottom}>
 			  <div class="message-container" bind:this={messageContainer}>
 				{#each messages as messageData}
@@ -138,7 +148,7 @@
 			  </div>
 			  <div class="online-users-list">
 				{#each onlineUsers as user}
-				  <div class="card-body" on:click={() => showUserMessages(user.fullName)}>
+				  <div class="card-body" >
 					<p class="username">{user.fullName}</p>
 				  </div>
 				{/each}
@@ -146,6 +156,7 @@
 			</div>
 		   
 		  {/if}
+	   
 		</div>
 	  </main>
 	  
@@ -154,19 +165,20 @@
   
   .main-container{
 	  margin-left: 320px;
-	  margin-top: -70px;
-	 
+	  margin-top: -40px;
+   
 	
 	}
 	.online-users-container {
 	  border: 1px solid #ccc;
 	  padding: 20px;
 	  width: 300px;
-	  height: 580px;
+	  height: 540px;
 	  margin-top:-600px ;
 	  margin-left: -300px;
 	  overflow: auto; 
 	  margin-right: 100px;
+		 background-color: rgb(241, 249, 249);
 	
 	}
    
@@ -201,11 +213,11 @@
   
 	}
 	.message-container {
-		background-image: url('');
+	 background-color: rgb(241, 249, 249);
 	   border-radius: 5px;
 	   margin-top: -700px;
 		margin-right:100px;
-		height: 590px;
+		height: 540px;
 		border: 1px solid #ccc;
 	  width:850px;
 	  margin: 10px;
