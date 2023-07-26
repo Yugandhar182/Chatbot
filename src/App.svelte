@@ -191,7 +191,7 @@
 	  margin-right: 5px;
 	  width: 700px;
 	  height: 30px;
-	  margin-bottom:10px;
+	  margin-bottom:50px;
   
 	}
 	.message-container {
