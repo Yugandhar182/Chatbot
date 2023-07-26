@@ -164,7 +164,7 @@
   <style>
   
   .main-container{
-	  margin-left: 500px;
+	  margin-left: 470px;
 	  margin-top: -40px;
    
 	
@@ -196,8 +196,8 @@
 	  left: 10px; /* Adjust the value as needed for the desired distance from the left */
 	  display: flex;
 	  align-items: center;
-	  width: 700px;
-	  margin-left:300px;
+	  width: 800px;
+	  margin-left:600px;
 	  }
   
 	.input-container input {
