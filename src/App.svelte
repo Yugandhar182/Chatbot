@@ -173,7 +173,7 @@
 	  border: 1px solid #ccc;
 	  padding: 20px;
 	  width: 300px;
-	  height: 540px;
+	  height: 580px;
 	  margin-top:-600px ;
 	  margin-left: -300px;
 	  overflow: auto; 
@@ -217,7 +217,7 @@
 	   border-radius: 5px;
 	   margin-top: -700px;
 		margin-right:100px;
-		height: 540px;
+		height: 590px;
 		border: 1px solid #ccc;
 	  width:850px;
 	  margin: 10px;
