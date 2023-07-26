@@ -57,12 +57,8 @@
 	  }
 	}
   
-	// Function to remove the user from the onlineUsersRef when the component is destroyed
-	function removeOnlineUser() {
-	  remove(onlineUsersRef.child(fullName)).then(() => {
-		joinedChat = false; // Set the flag to indicate user left the chat
-	  });
-	}
+  
+  
   
 	// Listen for new messages and online users
 	onMount(() => {
@@ -77,7 +73,7 @@
 	});
   
 	// Call removeOnlineUser when the component is destroyed (user leaves the chat)
-	onDestroy(removeOnlineUser);
+   
   
 	// Function to clear all messages from the chat
 	function clearData() {
@@ -86,24 +82,24 @@
 	  remove(messagesRef);
 	}
   
+  
+  
   </script>
+  
+  
   <main>
-   
 	<div class="main-container">
-	{#if !joinedChat}
-	<h1 style="color:blue;" > Enter the name to join Chat</h1>
-	<div>
-	 
-	  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
-	  <button on:click={addOnlineUser}>Join Chat</button>
-	</div>
-	{:else}
+	  {#if !joinedChat}
+		<h1 style="color: blue;">Enter your name to join the Chat</h1>
 		<div>
-		  <h2>Welcome, {fullName}!</h2>
+		  <input type="text" id="fullName" bind:value={fullName} placeholder="Enter your name" />
+		  <button on:click={addOnlineUser}>Join Chat</button>
+		</div>
+	  {:else}
+		<div>
 		  <div class="message-container">
 			{#each messages as messageData}
-			  <div
-				class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
+			  <div class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
 				<span class="chat-sender">{messageData.fullName}:</span>
 				<span class="chat-content">{messageData.message}</span>
 				<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
@@ -111,17 +107,53 @@
 			{/each}
 			<div class="input-container">
 			  <input type="text" bind:value={message} />
-			  <button style="background-color:blue;" on:click={sendMessage}>Send</button>
+			  <button style="background-color: blue;" on:click={sendMessage}>Send</button>
 			</div>
 		  </div>
 		  <button on:click={clearData}>Clear Data</button>
 		</div>
-	  {/if}
+		
+		<div class="online-users-container">
+		  <div class="Headingcard-body">
+		  <h2>Online Users</h2>
+		  </div>
+		  <div class="online-users-list">
+			{#each onlineUsers as user}
+			<div class="card-body">
+			  <p  class="username" >{user.fullName}</p>
+			 
+			  </div>
+			{/each}
+		  </div>
+		</div>
+		{/if}
+	 
 	</div>
   </main>
   
   
   <style>
+	
+	.online-users-container {
+	  border: 1px solid #ccc;
+	  padding: 20px;
+	  width: 300px;
+	  height: 540px;
+	  margin-top:-650px ;
+	  margin-left: 10px;
+	  overflow: auto; 
+	
+	}
+   
+  .online-users-list {
+	  position: relative;
+	  margin-top: 10px;
+	  overflow-y: auto; 
+	}
+	button {
+	  cursor: pointer;
+	}
+   
    
    .input-container {
 	  position: absolute;
@@ -130,25 +162,33 @@
 	  display: flex;
 	  align-items: center;
 	  
+	  
 	}
   
 	.input-container input {
 	  margin-right: 5px;
-	  width: 1300px;
+	  width: 1100px;
   
 	}
 	.message-container {
-	  background-image: url('');
+		background-image: url('');
+	   
+		border-radius: 5px;
+	   margin-top: -1000px;
+		margin-left: -40px;
+		width: 1200px;
+		height: 600px;
+		/* Add the following styles to position the input container at the bottom */
+		position: relative;
 	  border: 1px solid #ccc;
-	  border-radius: 5px;
-	  padding: 10px;
-	  margin-left: -80px;
-	  width: 1400px;
-	  height: 600px;
-	  /* Add the following styles to position the input container at the bottom */
-	  position: relative;
-	}
-  
+	 
+	  margin: 10px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  padding: 20px;
+	  }
   .chat-message {
 	  margin: 5px;
 	  border: 1px solid #ccc;
@@ -156,11 +196,15 @@
 	  padding: 10px;
 	  display: flex;
 	  align-items: center;
+	  width: 800px;
+	  margin-left:300px;
+	 
 	}
   
 	.chat-sender {
 	  font-weight: bold;
 	  margin-right: 10px;
+	 
 	}
   
 	.chat-timestamp {
@@ -168,14 +212,44 @@
 	}
   
 	.chat-message.sender {
-	  /* Style for sender messages (optional) */
-	  color: black; /* You can customize this color */
+	 
+	  color: black; 
 	}
   
 	.chat-message.receiver {
-	  /* Style for receiver messages (blue color) */
+	 
 	  color: blue;
 	}
+	.card-body {
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	  margin-bottom: 5px;
+	  background-color: #f9f9f9;
+	  height: 40px;
+	}
+	.Headingcard-body {
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	  margin-bottom: 5px;
+	  background-color: #f9f9f9;
+	  height: 60px;
+	}
+	.username {
+	
+	  margin-right: 60px; 
+	}
+	button {
+	 
+	  background-color: red; /* Customize the button background color */
+	  color: white; /* Customize the button text color */
+	  border: none;
+	  padding: 5px 10px;
+	  border-radius: 5px;
+	  cursor: pointer;
+	  margin-left: 10px; /* Adjust the margin-left value as needed */
+	}
+  
   
   </style>
-  
