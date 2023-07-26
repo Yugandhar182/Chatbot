@@ -130,7 +130,7 @@
 				{#each messages as messageData}
 				  <div class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
 					<span class="chat-sender">{messageData.fullName}:</span>
-					<span  class="chat-content">{messageData.message}</span>
+					<span style="color: green;" class="chat-content">{messageData.message}</span>
 					<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
 				  </div>
 				{/each}
@@ -178,7 +178,7 @@
 	  margin-left: -300px;
 	  overflow: auto; 
 	  margin-right: 100px;
-	  background-color: rgb(239, 164, 218);
+		 background-color: rgb(239, 164, 218);
 	
 	}
    
@@ -196,7 +196,7 @@
 	  left: 10px; /* Adjust the value as needed for the desired distance from the left */
 	  display: flex;
 	  align-items: center;
-	  width: 850px;
+	  width: 890px;
 	  margin-left:500px;
 	  }
   
@@ -278,15 +278,15 @@
 	  margin-right: 60px; 
 	}
 	button {
-	 
-	  background-color: red; 
-	  color: white; 
+	  /* Add styles for the remove button */
+	  background-color: red; /* Customize the button background color */
+	  color: white; /* Customize the button text color */
 	  border: none;
 	  padding: 5px 10px;
 	  border-radius: 5px;
 	  cursor: pointer;
 	  margin-left: 10px;
-	  margin-bottom: 25px; 
+	  margin-bottom: 25px; /* Adjust the margin-left value as needed */
 	}
   
   
