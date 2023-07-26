@@ -130,7 +130,7 @@
 				{#each messages as messageData}
 				  <div class="chat-message {messageData.fullName === fullName ? 'sender' : 'receiver'}">
 					<span class="chat-sender">{messageData.fullName}:</span>
-					<span class="chat-content">{messageData.message}</span>
+					<span  class="chat-content">{messageData.message}</span>
 					<span class="chat-timestamp">{formatDate(messageData.timestamp)}</span>
 				  </div>
 				{/each}
@@ -144,12 +144,12 @@
 			</div>
 			<div class="online-users-container">
 			  <div class="Headingcard-body">
-				<h2>Online Users</h2>
+				<h2 style="color: deeppink;">Online Users</h2>
 			  </div>
 			  <div class="online-users-list">
 				{#each onlineUsers as user}
 				  <div class="card-body" >
-					<p class="username">{user.fullName}</p>
+					<p style="color: darkgreen;" class="username">{user.fullName}</p>
 				  </div>
 				{/each}
 			  </div>
@@ -170,7 +170,7 @@
 	
 	}
 	.online-users-container {
-	  border: 1px solid #ccc;
+	  border: 1px solid #8428e7;
 	  padding: 20px;
 	  width: 300px;
 	  height: 580px;
@@ -178,7 +178,7 @@
 	  margin-left: -300px;
 	  overflow: auto; 
 	  margin-right: 100px;
-		 background-color: rgb(241, 249, 249);
+		 background-color: rgb(239, 164, 218);
 	
 	}
    
@@ -213,7 +213,7 @@
   
 	}
 	.message-container {
-	 background-color: rgb(241, 249, 249);
+	  background-color: rgb(241, 249, 249);
 	   border-radius: 5px;
 	   margin-top: -700px;
 		margin-right:100px;
@@ -278,15 +278,15 @@
 	  margin-right: 60px; 
 	}
 	button {
-	  /* Add styles for the remove button */
-	  background-color: red; /* Customize the button background color */
-	  color: white; /* Customize the button text color */
+	 
+	  background-color: red; 
+	  color: white; 
 	  border: none;
 	  padding: 5px 10px;
 	  border-radius: 5px;
 	  cursor: pointer;
-	  margin-left: 10px; /* Adjust the margin-left value as needed */
-	  margin-bottom: 25px;
+	  margin-left: 10px;
+	  margin-bottom: 25px; 
 	}
   
   
