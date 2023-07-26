@@ -165,7 +165,7 @@
   
   .main-container{
 	  margin-left: 470px;
-	  margin-top: -40px;
+	  margin-top: -80px;
    
 	
 	}
